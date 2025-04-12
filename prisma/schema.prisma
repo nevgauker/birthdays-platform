@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Party {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  date        DateTime
+  time        String
+  address     String
+  imageUrl    String?
+  rsvpLink    String?
+  createdAt   DateTime @default(now())
+}
