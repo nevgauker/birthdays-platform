@@ -15,7 +15,7 @@ const partySchema = z.object({
     description: z.string().min(1),
     date: z.string().min(1),
     time: z.string().min(1),
-    imageUrl: z.string().url().optional(),
+    imageUrl: z.string().optional(),
     rsvpLink: z.string().url().optional(),
 })
 
@@ -33,12 +33,13 @@ export default function PartyForm({ party }: PartyFormProps) {
     const [date, setDate] = useState(party?.date.toString() ?? '')
     const [time, setTime] = useState(party?.time ?? '')
     const [imageUrl, setImageUrl] = useState(party?.imageUrl ?? '/images/1.png')
-    const [rsvpLink, setRsvpLink] = useState(party?.rsvpLink ?? '')
+    const [rsvpLink, setRsvpLink] = useState(party?.rsvpLink ?? undefined)
     const [editingTitle, setEditingTitle] = useState(false)
     const [editingAddress, setEditingAddress] = useState(false)
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        console.log(title, address, description, date, time, imageUrl, rsvpLink)
 
         const validation = partySchema.safeParse({
             title, address, description, date, time, imageUrl, rsvpLink,

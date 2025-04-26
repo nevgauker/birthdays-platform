@@ -1,5 +1,6 @@
 'use server'
 import { prisma } from "@/lib/db"
+import { auth } from "@clerk/nextjs/server"
 import { Party } from "@prisma/client"
 
 
@@ -15,24 +16,30 @@ interface PartyData {
 
 export async function createParty({
     title,
-    address,  // Make sure to use 'address'
+    address,
     description,
     date,
     time,
     imageUrl,
     rsvpLink,
 }: PartyData) {
+    const { userId } = await auth()
+
+    if (!userId) {
+        throw new Error('Unauthorized: No user found')
+    }
 
     try {
         const newParty = await prisma.party.create({
             data: {
                 title,
-                address,  // Updated to 'address'
+                address,
                 description,
-                date: new Date(date),
+                date: new Date(date).toISOString(),
                 time,
                 imageUrl,
                 rsvpLink,
+                ownerId: userId,
             },
         })
 

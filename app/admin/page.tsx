@@ -15,7 +15,7 @@ export default async function AdminPage() {
 
             <div className="mb-6">
                 <Link
-                    href="/admin/create"
+                    href="/admin/party/create"
                     className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                 >
                     + Create New Party
@@ -36,7 +36,7 @@ export default async function AdminPage() {
 
                             <div className="mt-2 flex gap-4 flex-wrap">
                                 <Link
-                                    href={`/admin/edit/${party.id}`}
+                                    href={`/admin/party/edit/${party.id}`}
                                     className="text-blue-600 hover:underline"
                                 >
                                     Edit
@@ -47,6 +47,12 @@ export default async function AdminPage() {
                                     className="text-green-600 hover:underline"
                                 >
                                     View
+                                </Link>
+                                <Link
+                                    href={`/admin/party/guests/${party.id}`}
+                                    className="text-purple-600 hover:underline"
+                                >
+                                    Guests
                                 </Link>
                                 <DeletePartyButton id={party.id} />
 
