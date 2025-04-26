@@ -31,7 +31,7 @@ export default function GuestList({ guests }: GuestListProps) {
         <div className="bg-white p-4 shadow rounded">
             <h2 className="text-xl font-semibold mb-4">Guest List</h2>
             <ul className="space-y-2">
-                {guests.map((guest: any) => (
+                {guests.map((guest: Guest) => (
                     <GuestRow key={guest.id} guest={guest} /> // Use the GuestRow component for each guest
                 ))}
             </ul>

@@ -17,6 +17,8 @@ export default function SettingsForm({ settings }: { settings: UserSetting }) {
         e.preventDefault()
         if (!user?.id) return
 
+        console.log(isPending)
+
 
         startTransition(() => {
             updateUserSettings(user.id, { webhook, rsvpReminders })
