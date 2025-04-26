@@ -2,12 +2,14 @@
 
 'use client'
 
+import { Guest } from "@prisma/client"
+
 interface GuestListProps {
-    guests: any[] // Adjust the type as necessary based on your schema
+    guests: Guest[]
 }
 
 
-function GuestRow({ guest }: { guest: any }) {
+function GuestRow({ guest }: { guest: Guest }) {
     return (
         <li className="border p-2 rounded">
             <div className="flex justify-between">

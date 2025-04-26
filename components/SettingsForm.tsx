@@ -4,8 +4,6 @@ import { updateUserSettings } from '@/actions/userSettings'
 import { UserSetting } from '@prisma/client'
 import { useState, useTransition } from 'react'
 import { useUser } from '@clerk/nextjs'
-import { DisplayRsvpOption } from '@/lib/types'
-
 
 
 export default function SettingsForm({ settings }: { settings: UserSetting }) {
