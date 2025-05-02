@@ -1,6 +1,5 @@
 'use client'
 
-import { getPartyTitleById } from "@/actions/partyActions"
 import { sendRsvpEmail } from "@/actions/sendRsvpEmail"
 import { Guest } from "@prisma/client"
 import { useTransition } from "react"
