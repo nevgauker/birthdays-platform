@@ -60,3 +60,38 @@ export async function getGuestsByPartyId(partyId: string) {
     }
 }
 
+export async function getUnconfirmedGuests(partyId: string) {
+    try {
+        const guests = await prisma.guest.findMany({
+            where: {
+                partyId,
+                didConfirm: false,
+                didRespond: false,
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                phone: true,
+            },
+        })
+
+        return guests
+    } catch (error) {
+        console.error('Error fetching unconfirmed guests:', error)
+        throw new Error('Failed to fetch guests')
+    }
+}
+
+export async function getGuestByIdAndParty(guestId: string, partyId: string) {
+    const guest = await prisma.guest.findFirst({
+        where: {
+            id: guestId,
+            partyId: partyId,
+        },
+        select: { id: true }, // Only fetch the ID, nothing else
+    })
+
+    return !!guest // returns true if exists, false otherwise
+}
+

@@ -27,6 +27,7 @@ model Guest {
   name       String
   email      String
   phone      String? // optional
+  didRespond Boolean @default(false)
   didConfirm Boolean @default(false)
 
   partyId   String

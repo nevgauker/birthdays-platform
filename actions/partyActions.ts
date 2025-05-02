@@ -82,3 +82,19 @@ export async function getPartyById(id: string) {
         return null
     }
 }
+
+export async function getPartyTitleById(partyId: string): Promise<string | null> {
+    if (!partyId) return null
+
+    try {
+        const party = await prisma.party.findUnique({
+            where: { id: partyId },
+            select: { title: true },
+        })
+
+        return party?.title || null
+    } catch (error) {
+        console.error('Failed to fetch party name:', error)
+        return null
+    }
+}
